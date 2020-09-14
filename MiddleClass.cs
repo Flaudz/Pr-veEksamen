@@ -13,15 +13,27 @@ namespace PrøveEksamen
         public List<Company> Companies { get => companies; set => companies = value; }
 
 
-        public void AddNewCompany(int id, string companyname, string senumber, int tlf)
+        public void AddNewCompany(string companyname, string senumber, int tlf)
         {
-            Company company = new Company(id, companyname, senumber, tlf);
+            companies = cleanDB.GetCompanys();
+            int i = 0;
+            foreach (var item in companies)
+            {
+                i++;
+            }
+            Company company = new Company(i+1, companyname, senumber, tlf);
             cleanDB.AddNewCompany(company);
         }
 
-        public void AddNewPrivateCustormer(int id, string firstname, string lastname, string address, int tlf)
+        public void AddNewPrivateCustormer(string firstname, string lastname, string address, int tlf)
         {
-            PrivateCustormer custormer = new PrivateCustormer(id, firstname, lastname, address, tlf);
+            privateCustormers = cleanDB.GetPrivateCustormers();
+            int i = 0;
+            foreach (var item in privateCustormers)
+            {
+                i++;
+            }
+            PrivateCustormer custormer = new PrivateCustormer(i+1, firstname, lastname, address, tlf);
             cleanDB.AddNewPrivateCustormer(custormer);
         }
 

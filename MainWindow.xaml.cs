@@ -94,24 +94,22 @@ namespace PrøveEksamen
         // Tilføj en private kunde
         private void addPCustormer_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(pIdInput.Text);
             string firstname = pFirstNameInput.Text;
             string lastname = pLastNameInput.Text;
             string address = pAddressInput.Text;
             int tlf = int.Parse(pTlfInput.Text);
 
-            middleClass.AddNewPrivateCustormer(id, firstname, lastname, address, tlf);
+            middleClass.AddNewPrivateCustormer(firstname, lastname, address, tlf);
         }
 
         // Tilføj et nyt firma
         private void addCompany_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(companyIdInput.Text);
             string companyname = companyNameInput.Text;
             string senumber = seNummerInput.Text;
             int tlf = int.Parse(companyTlfInput.Text);
 
-            middleClass.AddNewCompany(id, companyname, senumber, tlf);
+            middleClass.AddNewCompany(companyname, senumber, tlf);
         }
 
         private void LookAtCompanysBtn_Click(object sender, RoutedEventArgs e)
