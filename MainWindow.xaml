@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrøveEksamen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
+        <Canvas Visibility="Visible" x:Name="MenuCanvas" Background="Black">
+            <Button x:Name="GennemseBtn" Background="Black" BorderThickness="1" Foreground="White" Content="Gennemse" FontSize="26" Canvas.Left="310" Canvas.Top="100" Width="180" Height="40" Click="GennemseBtn_Click"/>
+            <Button x:Name="AddBtn" Background="Black" BorderThickness="1" Foreground="White" Content="Tilføj ny burger" FontSize="26" Canvas.Left="310" Canvas.Top="175" Width="180" Height="40" Click="AddBtn_Click"/>
+        </Canvas>
+        
+        <Canvas Visibility="Hidden" x:Name="AddCanvasMenu" Background="Black">
+            
+            <Canvas Visibility="Visible" x:Name="ChooseAdd" Background="Black">
+                <Button x:Name="AddCompanyBtn" Background="Black" BorderThickness="1" Foreground="White" Content="Firma" FontSize="26" Canvas.Left="310" Canvas.Top="100" Width="180" Height="40" Click="AddCompanyBtn_Click" />
+                <Button x:Name="AddPrivateBtn" Background="Black" BorderThickness="1" Foreground="White" Content="Private" FontSize="26" Canvas.Left="310" Canvas.Top="175" Width="180" Height="40" Click="AddPrivateBtn_Click" />
+            </Canvas>
 
+            <Canvas Visibility="Hidden" x:Name="AddPrivate">
+
+                <TextBlock Text="ID" Foreground="white" FontSize="30" Width="800" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                <TextBox x:Name="pIdInput" Width="800" Canvas.Top="40" FontSize="20" TextAlignment="Center"/>
+
+                <TextBlock Text="FirstName" Foreground="white" Canvas.Top="80" FontSize="30" Width="800" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                <TextBox x:Name="pFirstNameInput" Width="800" Canvas.Top="120" FontSize="20" TextAlignment="Center"/>
+
+                <TextBlock Text="LastName" Foreground="white" Canvas.Top="160" FontSize="30" Width="800" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                <TextBox x:Name="pLastNameInput" Width="800" Canvas.Top="200" FontSize="20" TextAlignment="Center"/>
+
+                <TextBlock Text="Addresse" Foreground="white" Canvas.Top="240" FontSize="30" Width="800" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                <TextBox x:Name="pAddressInput" Width="800" Canvas.Top="280" FontSize="20" TextAlignment="Center"/>
+
+                <TextBlock Text="Tlf" Foreground="white" Canvas.Top="320" FontSize="30" Width="800" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                <TextBox x:Name="pTlfInput" Width="800" Canvas.Top="360" FontSize="20" TextAlignment="Center"/>
+
+                <Button x:Name="addPCustormer" Content="Tilføj ny privat kunde" Canvas.Top="400" FontSize="20" Width="190" Canvas.Left="305" Click="addPCustormer_Click"/>
+
+            </Canvas>
+        </Canvas>
+        
     </Grid>
 </Window>
