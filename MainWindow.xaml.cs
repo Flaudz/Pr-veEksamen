@@ -21,6 +21,7 @@ namespace PrøveEksamen
     public partial class MainWindow : Window
     {
 
+        
         MiddleClass middleClass = new MiddleClass();
         public MainWindow()
         {
@@ -30,7 +31,40 @@ namespace PrøveEksamen
         // Viser de 3 mugeligheder for at vise de forskellige kunder
         private void GennemseBtn_Click(object sender, RoutedEventArgs e)
         {
+            MenuCanvas.Visibility = Visibility.Hidden;
 
+            GennemseMenu.Visibility = Visibility.Visible;
+        }
+
+        // Viser Private
+        private void LookAtPrivateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseWhatToLookAt.Visibility = Visibility.Hidden;
+
+            GennemsePrivate.Visibility = Visibility.Visible;
+
+            LookAtPrivate.Text = $"{middleClass.ReturnPrivateCustormers()}";
+        }
+
+        // Tilføjer En Regning til de private
+        private void AddBillingForPrivate_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(pIDInputForBilling.Text);
+            int custormerId = int.Parse(privateIdInputForBilling.Text);
+            int hours = int.Parse(privateHoursInputForBilling.Text);
+
+            middleClass.AddNewBilling(id, custormerId, hours);
+        }
+
+        // Tilføjer en regning til et firma
+
+        private void AddBillingForCompany_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(CompanyIdInputForBilling.Text);
+            int custormerId = int.Parse(cIDInputForBilling.Text);
+            int hours = int.Parse(CompanyHoursInputForBilling.Text);
+
+            middleClass.AddNewBilling(id, custormerId, hours);
         }
 
         // Viser de 2 mugeligheder for at tilføje kunder
@@ -44,7 +78,9 @@ namespace PrøveEksamen
         // Vis formlen for at tilføje et firma som kunde
         private void AddCompanyBtn_Click(object sender, RoutedEventArgs e)
         {
+            ChooseAdd.Visibility = Visibility.Hidden;
 
+            AddCompany.Visibility = Visibility.Visible;
         }
 
         // Vis formlen for at tilføje en private kunde
@@ -65,6 +101,26 @@ namespace PrøveEksamen
             int tlf = int.Parse(pTlfInput.Text);
 
             middleClass.AddNewPrivateCustormer(id, firstname, lastname, address, tlf);
+        }
+
+        // Tilføj et nyt firma
+        private void addCompany_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(companyIdInput.Text);
+            string companyname = companyNameInput.Text;
+            string senumber = seNummerInput.Text;
+            int tlf = int.Parse(companyTlfInput.Text);
+
+            middleClass.AddNewCompany(id, companyname, senumber, tlf);
+        }
+
+        private void LookAtCompanysBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseWhatToLookAt.Visibility = Visibility.Hidden;
+
+            GennemseFirmaer.Visibility = Visibility.Visible;
+
+            LookAtCompanys.Text = $"{middleClass.ReturnCompanys()}";
         }
     }
 }
