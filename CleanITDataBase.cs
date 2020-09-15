@@ -164,5 +164,101 @@ namespace PrøveEksamen
             }
             return BillingList;
         }
+
+
+        // Alle Kunder
+
+
+        // Får information om alle kunder fra databasen
+        public List<AllCustormers> GetAllCustormers()
+        {
+            List<AllCustormers> allCustormersList = new List<AllCustormers>();
+            string allCustormersQuery = "SELECT * FROM AllCustormers";
+
+            DataSet resultSet = Execute(allCustormersQuery);
+
+            DataTable allCustormersTable = resultSet.Tables[0];
+
+            foreach (DataRow item in allCustormersTable.Rows)
+            {
+                int id = (int)item["id"];
+                string status = (string)item["Status"];
+
+                AllCustormers custormer = new AllCustormers();
+                custormer.Id = id;
+                custormer.Status = status;
+                allCustormersList.Add(custormer);
+            }
+            return allCustormersList;
+        }
+
+        // Får lavet en alle kunder når alle andre bliver kaldt
+        public void AddAllCustormers(AllCustormers custormers)
+        {
+            string addNewBillingForPrivate =
+                $"INSERT INTO AllCustormers VALUES('{custormers.Id}', '{custormers.Status}')";
+
+            try
+            {
+                Execute(addNewBillingForPrivate);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+
+        // Bestillinger
+
+
+        // Laver en ny bestilling
+        public void AddOrder(Order order)
+        {
+            string addNewOrder =
+                $"INSERT INTO Orders VALUES('${order.Id}', '{order.Custormerid}', '{order.Status}', '{order.Hours}', '{order.Price}', '{order.Message}', '{order.Date}', '{order.Timeordered}', '{order.Address}')";
+
+            
+                Execute(addNewOrder);
+            
+        }
+
+        // Får alle bestillinger fra databasen
+        public List<Order> GetOrders()
+        {
+            List<Order> orderList = new List<Order>();
+            string allOrderQuery = "SELECT * FROM Orders";
+
+
+            DataSet resultSet = Execute(allOrderQuery);
+
+            DataTable allOrdersTable = resultSet.Tables[0];
+
+            foreach (DataRow item in allOrdersTable.Rows)
+            {
+                int id = (int)item["id"];
+                int custormerid = (int)item["CustormerId"];
+                string status = (string)item["Status"];
+                int hours = (int)item["Hours"];
+                int price = (int)item["Price"];
+                string message = (string)item["Message"];
+                string date = (string)item["Date"];
+                string timeordered = (string)item["TimeOrdered"];
+                string address = (string)item["Address"];
+
+                Order order = new Order();
+                order.Id = id;
+                order.Custormerid = custormerid;
+                order.Status = status;
+                order.Hours = hours;
+                order.Price = price;
+                order.Message = message;
+                order.Date = date;
+                order.Timeordered = timeordered;
+                order.Address = address;
+                orderList.Add(order);
+            }
+            return orderList;
+        }
     }
 }

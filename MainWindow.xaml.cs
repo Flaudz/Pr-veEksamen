@@ -44,6 +44,8 @@ namespace PrøveEksamen
             GennemsePrivate.Visibility = Visibility.Visible;
 
             LookAtPrivate.Text = $"{middleClass.ReturnPrivateCustormers()}";
+
+            
         }
 
         // Tilføjer En Regning til de private
@@ -54,6 +56,11 @@ namespace PrøveEksamen
             int hours = int.Parse(privateHoursInputForBilling.Text);
 
             middleClass.AddNewPrivateBilling(custormerId, hours);
+
+            MenuCanvas.Visibility = Visibility.Visible;
+            GennemseMenu.Visibility = Visibility.Hidden;
+            ChooseWhatToLookAt.Visibility = Visibility.Visible;
+            GennemsePrivate.Visibility = Visibility.Hidden;
         }
 
         // Tilføjer en regning til et firma
@@ -65,6 +72,12 @@ namespace PrøveEksamen
             int hours = int.Parse(CompanyHoursInputForBilling.Text);
 
             middleClass.AddNewCompanyBilling(custormerId, hours, price);
+
+
+            MenuCanvas.Visibility = Visibility.Visible;
+            GennemseMenu.Visibility = Visibility.Hidden;
+            ChooseWhatToLookAt.Visibility = Visibility.Visible;
+            GennemseFirmaer.Visibility = Visibility.Hidden;
         }
 
         // Viser de 2 mugeligheder for at tilføje kunder
@@ -100,6 +113,11 @@ namespace PrøveEksamen
             int tlf = int.Parse(pTlfInput.Text);
 
             middleClass.AddNewPrivateCustormer(firstname, lastname, address, tlf);
+
+            ChooseAdd.Visibility = Visibility.Visible;
+            AddPrivate.Visibility = Visibility.Hidden;
+            AddCanvasMenu.Visibility = Visibility.Hidden;
+            MenuCanvas.Visibility = Visibility.Visible;
         }
 
         // Tilføj et nyt firma
@@ -110,6 +128,10 @@ namespace PrøveEksamen
             int tlf = int.Parse(companyTlfInput.Text);
 
             middleClass.AddNewCompany(companyname, senumber, tlf);
+            ChooseAdd.Visibility = Visibility.Visible;
+            AddCompany.Visibility = Visibility.Hidden;
+            AddCanvasMenu.Visibility = Visibility.Hidden;
+            MenuCanvas.Visibility = Visibility.Visible;
         }
 
         private void LookAtCompanysBtn_Click(object sender, RoutedEventArgs e)
@@ -119,6 +141,47 @@ namespace PrøveEksamen
             GennemseFirmaer.Visibility = Visibility.Visible;
 
             LookAtCompanys.Text = $"{middleClass.ReturnCompanys()}";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MenuCanvas.Visibility = Visibility.Visible;
+            GennemseMenu.Visibility = Visibility.Hidden;
+            ChooseWhatToLookAt.Visibility = Visibility.Visible;
+            GennemseOrdere.Visibility = Visibility.Hidden;
+        }
+
+        private void LookAtAllOrderssBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseWhatToLookAt.Visibility = Visibility.Hidden;
+
+            GennemseOrdere.Visibility = Visibility.Visible;
+
+            LookAtOrders.Text = $"{middleClass.ReutrnOrders()}";
+        }
+
+        private void AddOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseAdd.Visibility = Visibility.Hidden;
+            AddOrder.Visibility = Visibility.Visible;
+
+            ListOfOrders.Text = $"{middleClass.ReutrnOrders()}";
+        }
+
+        private void AddOrderInputBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseAdd.Visibility = Visibility.Visible;
+            AddOrder.Visibility = Visibility.Hidden;
+            AddCanvasMenu.Visibility = Visibility.Hidden;
+            MenuCanvas.Visibility = Visibility.Visible;
+
+            int custormerId = int.Parse(CustormerIDInput.Text);
+            string orderAddress = AddressInput.Text;
+            string date = DateInput.Text;
+            string message = MessageInput.Text;
+            int hours = int.Parse(HoursInput.Text);
+
+            middleClass.AddNewOrder(custormerId, orderAddress, date, message, hours);
         }
     }
 }
