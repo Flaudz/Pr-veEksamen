@@ -19,6 +19,7 @@ namespace PrøveEksamen
         {
             Id = id;
             Companyname = companyname;
+            Senumber = senumber;
             Tlf = tlf;
         }
 

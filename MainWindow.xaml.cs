@@ -49,22 +49,22 @@ namespace PrøveEksamen
         // Tilføjer En Regning til de private
         private void AddBillingForPrivate_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(pIDInputForBilling.Text);
+            
             int custormerId = int.Parse(privateIdInputForBilling.Text);
             int hours = int.Parse(privateHoursInputForBilling.Text);
 
-            middleClass.AddNewBilling(id, custormerId, hours);
+            middleClass.AddNewPrivateBilling(custormerId, hours);
         }
 
         // Tilføjer en regning til et firma
 
         private void AddBillingForCompany_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(CompanyIdInputForBilling.Text);
-            int custormerId = int.Parse(cIDInputForBilling.Text);
+            int price = int.Parse(CompanyPriceInput.Text);
+            int custormerId = int.Parse(CompanyIdInputForBilling.Text);
             int hours = int.Parse(CompanyHoursInputForBilling.Text);
 
-            middleClass.AddNewBilling(id, custormerId, hours);
+            middleClass.AddNewCompanyBilling(custormerId, hours, price);
         }
 
         // Viser de 2 mugeligheder for at tilføje kunder

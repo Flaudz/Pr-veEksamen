@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace PrøveEksamen
 {
@@ -18,13 +19,23 @@ namespace PrøveEksamen
             }
             return resultSet;
         }
+        // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Private kunde
+
 
         // Tilføj En ny private kunde
         public void AddNewPrivateCustormer(PrivateCustormer privateCustormer)
         {
             string addNewPrivateCustormer =
                 $"INSERT INTO PrivateCustormers VALUES('{privateCustormer.Id}', '{privateCustormer.Firstname}', '{privateCustormer.Lastname}', '{privateCustormer.Address}', '{privateCustormer.Tlf}')";
+            try
+            {
             Execute(addNewPrivateCustormer);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
 
         // Får information fra databasen og laver en kunde for hver af kunderne i databasen og returner dem
@@ -58,23 +69,26 @@ namespace PrøveEksamen
             return pCustormerList;
         }
 
-        // Tilføj En ny pris
-        public void AddNewPrivateBilling(Billing billing)
-        {
-            string addNewBillingForPrivate =
-                $"INSERT INTO Billing VALUES('{billing.Id}', '{billing.Custormerid}', '{billing.Price}', '{billing.Hours}')";
-            Execute(addNewBillingForPrivate);
-        }
 
-
+        // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         // Firmaer
+
+        // Tilføjer et nyt firma
         public void AddNewCompany(Company comapny)
         {
             string addNewCompany =
                 $"INSERT INTO Companys VALUES('{comapny.Id}', '{comapny.Companyname}', '{comapny.Senumber}', '{comapny.Tlf}')";
-            Execute(addNewCompany);
+            try
+            {
+                Execute(addNewCompany);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
 
+        // Får information omkring firmaer fra databasen
         public List<Company> GetCompanys()
         {
             List<Company> CompanyList = new List<Company>();
@@ -101,6 +115,54 @@ namespace PrøveEksamen
                 CompanyList.Add(company);
             }
             return CompanyList;
+        }
+        // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Regninger
+
+
+        // Tilføj En ny pris
+        public void AddNewPrivateBilling(Billing billing)
+        {
+            string addNewBillingForPrivate =
+                $"INSERT INTO Billing VALUES('{billing.Id}', '{billing.Custormerid}', '{billing.Price}', '{billing.Hours}')";
+            
+            try
+            {
+                Execute(addNewBillingForPrivate);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        // Får informationer omkring regninger fra databasen
+        public List<Billing> GetBillings()
+        {
+            List<Billing> BillingList = new List<Billing>();
+            string allBillingsQuery = "SELECT * FROM Billing";
+
+            DataSet resultSet = Execute(allBillingsQuery);
+
+
+            DataTable billingTable = resultSet.Tables[0];
+
+
+            foreach (DataRow billingRow in billingTable.Rows)
+            {
+                int id = (int)billingRow["id"];
+                int custormerid = (int)billingRow["CustormerId"];
+                int price = (int)billingRow["Price"];
+                int hours = (int)billingRow["Hours"];
+
+                Billing billing = new Billing();
+                billing.Id = id;
+                billing.Custormerid = custormerid;
+                billing.Price = price;
+                billing.Hours = hours;
+                BillingList.Add(billing);
+            }
+            return BillingList;
         }
     }
 }
