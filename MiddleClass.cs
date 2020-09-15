@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace PrøveEksamen
 {
-    class MiddleClass
+    public class MiddleClass
     {
         CleanITDataBase cleanDB = new CleanITDataBase();
         List<PrivateCustormer> privateCustormers = new List<PrivateCustormer>();
