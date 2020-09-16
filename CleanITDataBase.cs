@@ -216,7 +216,7 @@ namespace PrøveEksamen
         public void AddOrder(Order order)
         {
             string addNewOrder =
-                $"INSERT INTO Orders VALUES('${order.Id}', '{order.Custormerid}', '{order.Status}', '{order.Hours}', '{order.Price}', '{order.Message}', '{order.Date}', '{order.Timeordered}', '{order.Address}')";
+                $"INSERT INTO Orders VALUES('{order.Id}', '{order.Custormerid}', '{order.Status}', '{order.Hours}', '{order.Price}', '{order.Message}', '{order.Date}', '{order.Timeordered}', '{order.Address}')";
 
             
                 Execute(addNewOrder);

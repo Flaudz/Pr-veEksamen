@@ -104,7 +104,7 @@ namespace PrøveEksamen
             order.Price = hours * 150;
             foreach (Company company in companies)
             {
-                if(company.Id == order.Id)
+                if(company.Id == order.Custormerid)
                 {
                     trueOrFale = true;
                 }
